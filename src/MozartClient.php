@@ -3,8 +3,11 @@
 namespace Djneo92nl\BeoMozart;
 
 use Djneo92nl\BeoMozart\Api\BeolinkApi;
+use Djneo92nl\BeoMozart\Api\BluetoothApi;
 use Djneo92nl\BeoMozart\Api\PlaybackApi;
 use Djneo92nl\BeoMozart\Api\PowerApi;
+use Djneo92nl\BeoMozart\Api\ProductApi;
+use Djneo92nl\BeoMozart\Api\SoundApi;
 use Djneo92nl\BeoMozart\Api\SourcesApi;
 use Djneo92nl\BeoMozart\Api\VolumeApi;
 use Djneo92nl\BeoMozart\Http\CurlHttpClient;
@@ -50,6 +53,21 @@ class MozartClient
     public function beolink(): BeolinkApi
     {
         return new BeolinkApi($this->transport);
+    }
+
+    public function sound(): SoundApi
+    {
+        return new SoundApi($this->transport);
+    }
+
+    public function product(): ProductApi
+    {
+        return new ProductApi($this->transport);
+    }
+
+    public function bluetooth(): BluetoothApi
+    {
+        return new BluetoothApi($this->transport);
     }
 
     public function notifications(): NotificationClient

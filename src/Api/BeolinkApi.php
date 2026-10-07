@@ -44,6 +44,18 @@ class BeolinkApi
         return $this->transport->request('POST', "/api/v1/beolink/join/{$jid}", [], $query);
     }
 
+    /** Host side of a join: expand this device's active experience to the peer with this JID. */
+    public function expand(string $jid): void
+    {
+        $this->transport->request('POST', "/api/v1/beolink/expand/{$jid}");
+    }
+
+    /** Disconnect the peer with this JID from this device's active experience. */
+    public function unexpand(string $jid): void
+    {
+        $this->transport->request('POST', "/api/v1/beolink/unexpand/{$jid}");
+    }
+
     public function leave(): void
     {
         $this->transport->request('POST', '/api/v1/beolink/leave');

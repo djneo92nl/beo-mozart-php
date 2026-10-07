@@ -29,6 +29,17 @@ class BeolinkApiTest extends TestCase
         $this->assertSame(['source' => 'MUSIC'], $transport->lastCall()['query']);
     }
 
+    public function test_expand_and_unexpand_post_to_jid_path(): void
+    {
+        $transport = new FakeHttpTransport;
+        (new BeolinkApi($transport))->expand('jid-1');
+        $this->assertSame('/api/v1/beolink/expand/jid-1', $transport->lastCall()['path']);
+        $this->assertSame('POST', $transport->lastCall()['method']);
+
+        (new BeolinkApi($transport))->unexpand('jid-1');
+        $this->assertSame('/api/v1/beolink/unexpand/jid-1', $transport->lastCall()['path']);
+    }
+
     public function test_leave_posts_no_body(): void
     {
         $transport = new FakeHttpTransport;

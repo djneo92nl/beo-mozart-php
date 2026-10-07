@@ -21,6 +21,15 @@ class PowerApi
     }
 
     /**
+     * `batteryLevel` (percent), `isCharging`, `state`, … Null when the device did
+     * not answer, or has no battery.
+     */
+    public function getBattery(): ?array
+    {
+        return $this->transport->request('GET', '/api/v1/battery');
+    }
+
+    /**
      * NOTE: the spec has no "power on" endpoint — only standby and reboot.
      */
     public function standby(): void
